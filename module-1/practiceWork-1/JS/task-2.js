@@ -1,4 +1,5 @@
 'use strict';
+console.log('task-2');
 
 const str = "Привіт";
 const num = 123;
