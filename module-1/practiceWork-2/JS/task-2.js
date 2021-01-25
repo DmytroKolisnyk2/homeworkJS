@@ -1,2 +1,5 @@
 'use strict';
-console.log('task-2');
+
+const userAge = 15;
+const friendAge = 16;
+alert(userAge + friendAge);
