@@ -6,11 +6,11 @@ while (true) {
   if (enterNumber === null) {
     break;
   }
-  const value= Number(enterNumber);
-  if (Number.isNaN(value)) {
+  enterNumber = Number(enterNumber);
+  if (Number.isNaN(enterNumber)) {
     alert("Було написано не число, спробуйте ще раз");
   } else {
-    total += Number(value);
+    total += Number(enterNumber);
   }
 }
 alert(`Загальна сума чисел дорівнює ${total}`);
