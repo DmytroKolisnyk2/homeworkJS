@@ -18,7 +18,7 @@ const account = {
     if (Number.isNaN(+amount)) {
       return console.log("Ви ввели не число");
     }
-    this.transactions.push(this.createTransaction(amount, "deposit"));
+    this.transactions.push(this.createTransaction(amount, Transaction.DEPOSIT));
     this.balance += amount;
   },
 
@@ -29,7 +29,7 @@ const account = {
     if (amount > this.balance) {
       return console.log("Не достатньо коштів на рахунку");
     }
-    this.transactions.push(this.createTransaction(amount, "withdraw"));
+    this.transactions.push(this.createTransaction(amount, Transaction.WITHDRAW));
     this.balance -= amount;
   },
 
@@ -63,6 +63,6 @@ account.withdraw(129);
 console.log(account.transactions);
 console.log(account.getBalance());
 console.log(account.getTransactionDetails(3));
-console.log(account.getTransactionTotal('deposit'));
-console.log(account.getTransactionTotal('withdraw'));
+console.log(account.getTransactionTotal(Transaction.DEPOSIT));
+console.log(account.getTransactionTotal(Transaction.WITHDRAW));
 
