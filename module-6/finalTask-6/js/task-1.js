@@ -1,8 +1,11 @@
-import users from './users.js';
-console.log("task-1");
+import users from "./users.js";
+console.log("task-9");
 
 const getUserNames = users => {
-  const result = users.map(user => user.name);
+  const returnLonger = (a, b) => a.friends.length - b.friends.length;
+  const result = users
+    .sort(returnLonger)
+    .map(user => user.name)
   return result;
 };
 
