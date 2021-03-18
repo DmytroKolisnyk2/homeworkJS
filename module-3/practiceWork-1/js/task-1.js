@@ -1,13 +1,17 @@
 console.log("task-1");
 
-let user = {};
+const user = {};
 user.userName = "Dmytro";
 user.age = 15;
 user.showUserName = function () {
   return this.userName;
 };
 user.updateAge = function () {
-  return this.age + 1;
+  return this.age++;
 };
 console.log(user.showUserName());
-console.log(user.updateAge());
+user.updateAge();
+console.log(user.age);
+user.updateAge();
+user.updateAge();
+console.log(user.age);
