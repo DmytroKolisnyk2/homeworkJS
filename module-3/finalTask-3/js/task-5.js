@@ -7,19 +7,37 @@ const products = [
   { name: "Захоплення", price: 1200, quantity: 2 },
 ];
 
-const getAllPropValues = function (arr, prop) {
+// const getAllPropValues = function (arr, prop) {
+//   let result = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     for (const value in arr[i]) {
+//       if (value === prop) {
+//         result.push(arr[i][value]);
+//       }
+//     }
+//   }
+//   return result;
+// }
+
+const getAllPropValues = (arr, prop) => {
   let result = [];
   for (let i = 0; i < arr.length; i++) {
-    for (const value in arr[i]) {
-      if (value === prop) {
-        result.push(arr[i][value]);
-      }
-    }
+    if (!arr[i].hasOwnProperty(prop)) return result;
+    result.push(arr[i][prop]);
   }
   return result;
-}
+};
+
 console.log(getAllPropValues(products, "name")); // ['Радар', 'Сканер', 'Дроїд', 'Захоплення']
 
 console.log(getAllPropValues(products, "quantity")); // [4, 3, 7, 2]
 
 console.log(getAllPropValues(products, "category")); // []
+
+// Задача 5 - Работает
+// Но есть еще более простое решение )))
+// вот посмотри и разберись, можешь пригодиться
+// внутри первого цикла можно поставить вот такой код
+// if(!arr[i].hasOwnProperty(prop)) return result;
+// result.push(arr[i][prop]);
+// тогда не нужен второй цикл )))

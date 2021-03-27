@@ -1,13 +1,26 @@
 console.log("task-3");
 
-const findBestEmployee = function (employees) {
-  const array = Object.entries(employees);
+// const findBestEmployee = function (employees) {
+//   const array = Object.entries(employees);
+//   let result = 0;
+//   let bestEmployee;
+//   for (const value of array) {
+//     if (result < value[1]) {
+//       bestEmployee = value[0];
+//       result = value[1];
+//     }
+//   }
+//   return bestEmployee;
+// };
+
+const findBestEmployee = (employees) => {
+  const array = Object.keys(employees);
   let result = 0;
   let bestEmployee;
   for (const value of array) {
-    if (result < value[1]) {
-      bestEmployee = value[0];
-      result = value[1];
+    if (result < employees[value]) {
+      bestEmployee = value;
+      result = employees[value];
     }
   }
   return bestEmployee;
