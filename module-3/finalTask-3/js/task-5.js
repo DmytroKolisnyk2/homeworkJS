@@ -34,10 +34,3 @@ console.log(getAllPropValues(products, "quantity")); // [4, 3, 7, 2]
 
 console.log(getAllPropValues(products, "category")); // []
 
-// Задача 5 - Работает
-// Но есть еще более простое решение )))
-// вот посмотри и разберись, можешь пригодиться
-// внутри первого цикла можно поставить вот такой код
-// if(!arr[i].hasOwnProperty(prop)) return result;
-// result.push(arr[i][prop]);
-// тогда не нужен второй цикл )))
