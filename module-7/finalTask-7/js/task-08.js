@@ -1,4 +1,5 @@
-// count не оновлюється при введені нового числа 
+// count не оновлюється при введені нового числа
+
 // const numberRef = document.querySelector("#controls > input");
 // const renderRef = document.querySelector("#render");
 // const destroyRef = document.querySelector("#destroy");
