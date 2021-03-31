@@ -1,3 +1,4 @@
+// count не оновлюється при введені нового числа 
 // const numberRef = document.querySelector("#controls > input");
 // const renderRef = document.querySelector("#render");
 // const destroyRef = document.querySelector("#destroy");
@@ -24,6 +25,9 @@
 // };
 // renderRef.addEventListener("click", createBoxes.bind(count, count));
 // destroyRef.addEventListener("click", destroyBoxes);
+
+
+// працює але в умові аргументом createBoxes має бути число
 
 const numberRef = document.querySelector("#controls > input");
 const renderRef = document.querySelector("#render");
@@ -54,5 +58,5 @@ numberRef.addEventListener("input", () => {
   console.log(count);
   
 });
-renderRef.addEventListener("click", createBoxes.bind(count, count));
+renderRef.addEventListener("click", createBoxes.bind(count, count)); // як тут коректніше написати bind
   destroyRef.addEventListener("click", destroyBoxes);
