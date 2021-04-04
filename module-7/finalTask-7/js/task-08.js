@@ -1,37 +1,3 @@
-//-----------------------------------------------------------------
-// count не оновлюється при введені нового числа
-
-// const numberRef = document.querySelector("#controls > input");
-// const renderRef = document.querySelector("#render");
-// const destroyRef = document.querySelector("#destroy");
-// const boxesRef = document.querySelector("#boxes");
-// const count = +numberRef.value;
-// console.log(count);
-// const createBoxes = (amount) => {
-//   let size = 30;
-//   let string = "";
-//   for (let i = 0; i < amount; i++) {
-//     string = `
-// <div style="width: ${size}px; height: ${size}px; background-color:rgb(${Math.round(
-//       Math.random() * 255
-//     )}, ${Math.round(Math.random() * 255)}, ${Math.round(
-//       Math.random() * 255
-//     )})"></div>`;
-//     boxesRef.insertAdjacentHTML("beforeend", string);
-//     size += 10;
-//   }
-// };
-
-// const destroyBoxes = () => {
-//   [...boxesRef.children].forEach((child) => child.remove());
-// };
-// renderRef.addEventListener("click", createBoxes.bind(count, count));
-// destroyRef.addEventListener("click", destroyBoxes);
-
-
-//----------------------------------------------------------------
-// працює але в умові аргументом createBoxes має бути число
-
 const numberRef = document.querySelector("#controls > input");
 const renderRef = document.querySelector("#render");
 const destroyRef = document.querySelector("#destroy");
@@ -61,7 +27,7 @@ numberRef.addEventListener("input", () => {
   console.log(count);
   
 });
-renderRef.addEventListener("click", createBoxes.bind(count, count)); // як тут коректніше написати bind
+renderRef.addEventListener("click", createBoxes.bind({}, count)); // як тут коректніше написати bind
 destroyRef.addEventListener("click", destroyBoxes);
   
 //----------------------------------------------------------------
@@ -98,3 +64,34 @@ destroyRef.addEventListener("click", destroyBoxes);
 // numberRef.addEventListener("input", updateCount.bind(document, count));
 // renderRef.addEventListener("click", createBoxes.bind(document, count)); // createBoxes не бачить оновлений count
 // destroyRef.addEventListener("click", destroyBoxes);
+
+//-----------------------------------------------------------------
+// count не оновлюється при введені нового числа
+
+// const numberRef = document.querySelector("#controls > input");
+// const renderRef = document.querySelector("#render");
+// const destroyRef = document.querySelector("#destroy");
+// const boxesRef = document.querySelector("#boxes");
+// const count = +numberRef.value;
+// console.log(count);
+// const createBoxes = (amount) => {
+//   let size = 30;
+//   let string = "";
+//   for (let i = 0; i < amount; i++) {
+//     string = `
+// <div style="width: ${size}px; height: ${size}px; background-color:rgb(${Math.round(
+//       Math.random() * 255
+//     )}, ${Math.round(Math.random() * 255)}, ${Math.round(
+//       Math.random() * 255
+//     )})"></div>`;
+//     boxesRef.insertAdjacentHTML("beforeend", string);
+//     size += 10;
+//   }
+// };
+
+// const destroyBoxes = () => {
+//   [...boxesRef.children].forEach((child) => child.remove());
+// };
+// renderRef.addEventListener("click", createBoxes.bind(count, count));
+// destroyRef.addEventListener("click", destroyBoxes);
+
