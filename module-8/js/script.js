@@ -51,12 +51,10 @@ refs.galleryRef.addEventListener("click", (event) => {
   refs.lightboxRef.classList.add("is-open");
   refs.bindRemoveModal = removeModal.bind(event, refs);
   refs.bindRemoveModalEsc = removeModalEsc.bind(refs, refs);
+  refs.bindChangePhoto = _.throttle(changePhoto.bind(refs, refs, photos), 300);
   refs.closeButtonRef.addEventListener("click", refs.bindRemoveModal);
   window.addEventListener("keydown", refs.bindRemoveModalEsc);
-  window.addEventListener(
-    "keydown",
-    _.throttle(changePhoto.bind(refs, refs, photos), 300)
-  );
+  window.addEventListener("keydown", refs.bindChangePhoto);
   refs.closeAreaRef.addEventListener("click", refs.bindRemoveModal);
   console.log(refs);
 });

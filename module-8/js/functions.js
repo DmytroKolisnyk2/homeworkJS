@@ -3,6 +3,7 @@ export const removeModal = (refs) => {
   refs.closeButtonRef.removeEventListener("click", refs.bindRemoveModal);
   refs.closeAreaRef.removeEventListener("click", refs.bindRemoveModal);
   window.removeEventListener("keydown", refs.bindRemoveModalEsc);
+  window.removeEventListener("keydown", refs.bindChangePhoto);
 };
 export const removeModalEsc = (refs) => {
   if (event.key === "Escape") {
@@ -10,6 +11,7 @@ export const removeModalEsc = (refs) => {
     refs.closeButtonRef.removeEventListener("click", refs.bindRemoveModal);
     refs.closeAreaRef.removeEventListener("click", refs.bindRemoveModal);
     window.removeEventListener("keydown", refs.bindRemoveModalEsc);
+    window.removeEventListener("keydown", refs.bindChangePhoto);
   }
 };
 export const changePhoto = (refs, photos) => {
