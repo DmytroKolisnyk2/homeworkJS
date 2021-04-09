@@ -44,3 +44,18 @@ export const changePhoto = (refs, photos) => {
     console.log(refs.photoId);
   }
 };
+export const drawImage = (photo, refs) => {
+  const item = document.createElement("li");
+  const link = document.createElement("a");
+  const image = document.createElement("img");
+  item.classList.add("gallery__item");
+  link.classList.add("gallery__link");
+  image.classList.add("gallery__image");
+  image.setAttribute("data-id", photo.id);
+  image.setAttribute("data-source", photo.original);
+  link.href = photo.original;
+  image.src = photo.preview;
+  refs.galleryRef.appendChild(item);
+  item.appendChild(link);
+  link.appendChild(image);
+};
