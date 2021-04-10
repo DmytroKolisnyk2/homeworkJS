@@ -9,6 +9,7 @@ const refs = {
   closeButtonRef: document.querySelector(".lightbox__button"),
   closeAreaRef: document.querySelector(".lightbox__overlay"),
   galleryRef: document.querySelector(".js-gallery"),
+  lightboxBtnRef: [...document.querySelectorAll(".lightbox__btn")],
 };
 photos.forEach((photos) => drawImage(photos, refs));
 refs.photosRef = [...refs.galleryRef.querySelectorAll(".gallery__image")];
@@ -19,9 +20,12 @@ refs.galleryRef.addEventListener("click", (event) => {
   refs.lightboxRef.classList.add("is-open");
   refs.bindRemoveModal = removeModal.bind(event, refs);
   refs.bindRemoveModalEsc = removeModalEsc.bind(refs, refs);
-  refs.bindChangePhoto = _.throttle(changePhoto.bind(refs, refs, photos), 300);
+  refs.bindChangePhoto = _.throttle(changePhoto.bind(refs, refs, photos), 100);
   refs.closeButtonRef.addEventListener("click", refs.bindRemoveModal);
   window.addEventListener("keydown", refs.bindRemoveModalEsc);
   window.addEventListener("keydown", refs.bindChangePhoto);
   refs.closeAreaRef.addEventListener("click", refs.bindRemoveModal);
+  refs.lightboxBtnRef.forEach(() =>
+    addEventListener("click", refs.bindChangePhoto)
+  );
 });
