@@ -22,6 +22,7 @@ export const removeModalEsc = (refs) => {
 };
 export const changePhoto = (refs, photos) => {
   if (event.key === "ArrowRight" || event.target.dataset.action === "right") {
+    event.target.blur(); // забирає focus із кнопки
     if (refs.photoId === photos.length) {
       refs.photoId = 1;
       refs.originalImageRef.src = document.querySelector(
@@ -33,9 +34,9 @@ export const changePhoto = (refs, photos) => {
       ).dataset.source;
       refs.photoId++;
     }
-    console.log(refs.photoId);
   }
   if (event.key === "ArrowLeft" || event.target.dataset.action === "left") {
+    event.target.blur();
     if (refs.photoId === 1) {
       refs.photoId = photos.length;
       refs.originalImageRef.src = document.querySelector(
@@ -47,7 +48,6 @@ export const changePhoto = (refs, photos) => {
       ).dataset.source;
       refs.photoId--;
     }
-    console.log(refs.photoId);
   }
 };
 export const drawImage = (photo, refs) => {
