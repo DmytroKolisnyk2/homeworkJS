@@ -10,9 +10,7 @@ const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
-
-if (localStorage.getItem('user-theme') === Theme.DARK) checkboxRef.checked = true;
-
+checkboxRef.checked = localStorage.getItem('user-theme') === Theme.DARK ? true : false;
 checkboxRef.addEventListener('input', (event) => {
   if (event.currentTarget.checked) {
     document.body.classList.remove(Theme.LIGHT);

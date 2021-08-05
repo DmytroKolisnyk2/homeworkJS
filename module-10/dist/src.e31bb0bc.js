@@ -2434,7 +2434,7 @@ const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme'
 };
-if (localStorage.getItem('user-theme') === Theme.DARK) checkboxRef.checked = true;
+checkboxRef.checked = localStorage.getItem('user-theme') === Theme.DARK ? true : false;
 checkboxRef.addEventListener('input', event => {
   if (event.currentTarget.checked) {
     document.body.classList.remove(Theme.LIGHT);
@@ -2474,7 +2474,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41689" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36763" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
