@@ -13,13 +13,11 @@ const makeTransaction = (transaction) => {
 };
 
 const logSuccess = (data) => {
-  console.log('%c task-3', 'color: green; font-size: 14px')
-  console.log(`Transaction ${data.id} processed in ${data.time}ms`);
+  console.log(`%c task-3: %cTransaction ${data.id} processed in ${data.time}ms`, 'color: green; font-size: 14px');
 };
 
 const logError = id => {
-  console.log('%c task-3', 'color: green; font-size: 14px')
-  console.log(`%cError processing transaction ${id}. Please try again later.`,'color: red;');
+  console.log(`%c task-3: %cError processing transaction ${id}. Please try again later.`, 'color: green; font-size: 14px', 'color: red;');
 };
 
 makeTransaction({ id: 70, amount: 150 })
