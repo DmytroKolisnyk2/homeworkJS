@@ -10,7 +10,27 @@
 </head>
 
 <body>
-  <div class="timer" id="timer-1">
+  <div class="tick" data-did-init="handleTickInit">
+  
+    <div data-repeat="true" data-layout="horizontal fit" data-transform="preset(d, h, m, s) -> delay">
+  
+      <div class="tick-group">
+  
+        <div data-key="value" data-repeat="true" data-transform="pad(00) -> split -> delay">
+  
+          <span data-view="flip"></span>
+  
+        </div>
+  
+        <span data-key="label" data-view="text" class="tick-label"></span>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+
+  <!-- <div class="timer" id="timer-1">
     <div class="field">
       <span class="value" data-value="days">11</span>
       <span class="label">Days</span>
@@ -30,7 +50,7 @@
       <span class="value" data-value="secs">11</span>
       <span class="label">Seconds</span>
     </div>
-  </div>
+  </div> -->
 </body>
 
 </html>
