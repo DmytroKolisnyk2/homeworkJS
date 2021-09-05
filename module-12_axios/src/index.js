@@ -9,12 +9,12 @@ import axios from 'axios';
 
 const containerRef = document.querySelector('.container');
 const inputRef = document.querySelector('.input');
-const URL = 'https://restcountries.eu/rest/v2';
+
+axios.defaults.baseURL = 'https://restcountries.eu/rest/v2';
+
 const searchCountry = (event) => {
   if (!event.target.value) return;
-  axios.get(`${URL}/name/${event.target.value}?fields=name;capital;flag;languages;population`)
-    // .then((data) => data.json())
-    // .then((data) => console.log(data)) 
+  axios.get(`/name/${event.target.value}?fields=name;capital;flag;languages;population`)
     .then(
       ({data}) => {
         if (data.length >= 10) {
