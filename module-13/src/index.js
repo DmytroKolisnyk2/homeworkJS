@@ -22,6 +22,7 @@ const app = {
   page: 1,
 
   searchPhoto() {
+    if (inputRef.value.length === 0) return;
     this.page = 1;
     this.blocked = true;
     observeRef.classList.add('observe--hidden');
@@ -36,7 +37,7 @@ const app = {
       })
       .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
   },
-  
+
   updatePhotos() {
     if (this.page === 1 || this.blocked) return;
     observeRef.classList.add('observe--hidden');
