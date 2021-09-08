@@ -14,31 +14,54 @@ const galleryRef = document.querySelector('.gallery');
 const observeRef = document.querySelector('#observe');
 
 info({
-  text: 'Type your query to find photos',
-  delay: 1000
+  text: 'Type your query to find photos in Pixabay',
+  delay: 1500
 });
 
 const app = {
   page: 1,
+
   searchPhoto() {
-    console.log(this.page);
-    apiRequest(inputRef.value, 1)
+    this.page = 1;
+    this.blocked = true;
+    observeRef.classList.add('observe--hidden');
+    apiRequest(inputRef.value, this.page)
       .then(({ data }) => {
-        if (data.hits.length === 0) error({ text: 'Query not found', delay: 500 });
         galleryRef.innerHTML = cardTmpl(data.hits);
-        this.page = 2;
+        if (data.hits.length === 0) {
+          error({ text: 'Query not found', delay: 700 });
+          return;
+        };
+        this.restartObserver();
       })
       .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
   },
+  
   updatePhotos() {
-    console.log(this.page);
+    if (this.page === 1 || this.blocked) return;
+    observeRef.classList.add('observe--hidden');
+    this.blocked = true;
+    this.last = galleryRef.lastElementChild;
     apiRequest(inputRef.value, this.page)
       .then(({ data }) => {
-        if (data.hits.length === 0) info({ text: "That's the end", delay: 700 });
+        if (data.hits.length === 0) {
+          info({ text: "That's the end", delay: 900 });
+          return;
+        }
         galleryRef.insertAdjacentHTML('beforeend', cardTmpl(data.hits));
+        this.last.nextElementSibling.lastElementChild.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+        });
+        this.restartObserver();
       })
       .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
-    this.page++;
+  },
+
+  restartObserver() {
+    observeRef.classList.remove('observe--hidden');
+    setTimeout(() => this.blocked = false, 500);
+    this.page++
   }
 }
 
@@ -50,8 +73,8 @@ const openImg = (event) => {
 	`).show()
 };
 
-document.querySelector('.update').addEventListener('click', () => app.updatePhotos.apply(app));
 galleryRef.addEventListener('click', openImg);
 inputRef.addEventListener('input', debounce(() => app.searchPhoto.apply(app), 500));
 
-// const observer = new IntersectionObserver(updatePhoto);
+const observer = new IntersectionObserver(app.updatePhotos.bind(app));
+observer.observe(observeRef);

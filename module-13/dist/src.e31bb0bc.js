@@ -4969,23 +4969,31 @@ const inputRef = document.querySelector('#search-form').elements.query;
 const galleryRef = document.querySelector('.gallery');
 const observeRef = document.querySelector('#observe');
 (0, _core.info)({
-  text: 'Type your query to find photos',
-  delay: 1000
+  text: 'Type your query to find photos in Pixabay',
+  delay: 1500
 });
 const app = {
   page: 1,
 
   searchPhoto() {
-    console.log(this.page);
-    (0, _apiService.apiRequest)(inputRef.value, 1).then(({
+    this.page = 1;
+    this.blocked = true;
+    observeRef.classList.add('observe--hidden');
+    (0, _apiService.apiRequest)(inputRef.value, this.page).then(({
       data
     }) => {
-      if (data.hits.length === 0) (0, _core.error)({
-        text: 'Query not found',
-        delay: 500
-      });
       galleryRef.innerHTML = (0, _card.default)(data.hits);
-      this.page = 2;
+
+      if (data.hits.length === 0) {
+        (0, _core.error)({
+          text: 'Query not found',
+          delay: 700
+        });
+        return;
+      }
+
+      ;
+      this.restartObserver();
     }).catch(() => (0, _core.error)({
       text: 'Oops something went wrong',
       delay: 1000
@@ -4993,19 +5001,36 @@ const app = {
   },
 
   updatePhotos() {
-    console.log(this.page);
+    if (this.page === 1 || this.blocked) return;
+    observeRef.classList.add('observe--hidden');
+    this.blocked = true;
+    this.last = galleryRef.lastElementChild;
     (0, _apiService.apiRequest)(inputRef.value, this.page).then(({
       data
     }) => {
-      if (data.hits.length === 0) (0, _core.info)({
-        text: "That's the end",
-        delay: 700
-      });
+      if (data.hits.length === 0) {
+        (0, _core.info)({
+          text: "That's the end",
+          delay: 900
+        });
+        return;
+      }
+
       galleryRef.insertAdjacentHTML('beforeend', (0, _card.default)(data.hits));
+      this.last.nextElementSibling.lastElementChild.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end'
+      });
+      this.restartObserver();
     }).catch(() => (0, _core.error)({
       text: 'Oops something went wrong',
       delay: 1000
     }));
+  },
+
+  restartObserver() {
+    observeRef.classList.remove('observe--hidden');
+    setTimeout(() => this.blocked = false, 500);
     this.page++;
   }
 
@@ -5018,9 +5043,10 @@ const openImg = event => {
 	`).show();
 };
 
-document.querySelector('.update').addEventListener('click', () => app.updatePhotos.apply(app));
 galleryRef.addEventListener('click', openImg);
-inputRef.addEventListener('input', (0, _lodash.default)(() => app.searchPhoto.apply(app), 500)); // const observer = new IntersectionObserver(updatePhoto);
+inputRef.addEventListener('input', (0, _lodash.default)(() => app.searchPhoto.apply(app), 500));
+const observer = new IntersectionObserver(app.updatePhotos.bind(app));
+observer.observe(observeRef);
 },{"./sass/main.scss":"sass/main.scss","material-design-icons/iconfont/material-icons.css":"../node_modules/material-design-icons/iconfont/material-icons.css","lodash.debounce":"../node_modules/lodash.debounce/index.js","./templates/card.hbs":"templates/card.hbs","basiclightbox":"../node_modules/basiclightbox/dist/basicLightbox.min.js","basiclightbox/dist/basicLightbox.min.css":"../node_modules/basiclightbox/dist/basicLightbox.min.css","@pnotify/core":"../node_modules/@pnotify/core/dist/PNotify.js","@pnotify/core/dist/PNotify.css":"../node_modules/@pnotify/core/dist/PNotify.css","@pnotify/core/dist/BrightTheme.css":"../node_modules/@pnotify/core/dist/BrightTheme.css","./js/apiService":"js/apiService.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -5049,7 +5075,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35053" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46337" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Пошук зображення</title>
+  <title>Find photos</title>
   <link rel="icon shortcut" href="https://avatars.githubusercontent.com/u/69747115?v=4" type="image/x-icon">
 </head>
 
 <body class="body">
-  <h1 class="headline">
+  <a href='#headline' class="scroll-btn">&#x2B06;</a>
+  <h1 id="headline" class="headline">
     Find photos in Pixabay
   </h1>
   <form class="search-form" id="search-form">
@@ -19,9 +20,11 @@
   <ul class="gallery">
 
   </ul>
-  <button class="update" type="button">UPDATE</button>
+  <!-- <button class="update" type="button">UPDATE</button> -->
 
-  <!-- <div id="observe"></div> -->
+  <div class="observe observe--hidden" id="observe">
+    <img src="./images/loader.gif" alt="loader">
+  </div>
   <script src="./index.js"></script>
 </body>
 

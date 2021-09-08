@@ -13,8 +13,10 @@
   font-family: sans-serif;
 }
 
-body {
+body,
+html {
   background-color: #eee;
+  scroll-behavior: smooth;
 }
 
 .headline {
@@ -84,11 +86,44 @@ body {
   overflow: hidden;
 }
 
-#observe {
-  height: 20px;
-  background-color: red;
-  bottom: 200px;
-  z-index: 200;
+.observe {
+  position: relative;
+  top: -7px;
+  height: 60px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 200ms linear;
+  transform: scale(1);
+}
+.observe--hidden {
+  transform: scale(0);
+}
+
+.scroll-btn {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  color: #555;
+  border-radius: 50%;
+  font-size: 26px;
+  font-family: sans-serif;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 6px 6px rgba(0, 0, 0, 0.06), 1px 6px 8px rgba(0, 0, 0, 0.16);
+  transition: 200ms linear;
+  position: fixed;
+  bottom: 20px;
+  left: 25px;
+  padding-top: 12px;
+}
+.scroll-btn:hover, .scroll-btn:active {
+  padding-top: 6px;
+  color: #fff;
+  background-color: #555;
+  font-size: 38px;
 }
 @font-face {
   font-family: 'Material Icons';
